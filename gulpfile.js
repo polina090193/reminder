@@ -11,15 +11,16 @@ const ghPages = require('gh-pages');
 sass.compiler = require('node-sass');
 
 const scssFiles = [
-  './src/style.sass',
+  './src/scss/style.scss',
+  './src/scss/reset.scss',
 ]
 
 const jsFiles = [
-  './src/index.js',
+  './src/js/index.js',
 ]
 
 gulp.task('html', function() {
-  return gulp.src('src/*.html')
+  return gulp.src('./src/*.html')
   .pipe(gulp.dest('./build'))
 	.pipe(browserSync.reload({ stream: true }))
 });
@@ -63,11 +64,9 @@ function () {
   browserSync.init({
     server: "build"
   });
-  gulp.watch('./src/**/*.scss', gulp.series('styles'));
-  gulp.watch('./src/*.scss',  gulp.series('styles'));
-  gulp.watch('./src/**/*.js',  gulp.series('scripts'));
-  gulp.watch('./src/*.js',  gulp.series('scripts'));
-  gulp.watch("./build/*.html").on('change', browserSync.reload);
+  gulp.watch("./src/*.html", gulp.series('html'));
+  gulp.watch('./src/scss/*.scss', gulp.series('styles'));
+  gulp.watch('./src/js/*.js',  gulp.series('scripts'));
 });
   
 gulp.task('build', gulp.series('del', 'html', 'images', 'styles', 'scripts'));

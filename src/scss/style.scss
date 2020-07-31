@@ -1,0 +1,31 @@
+.wrap {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    height: 100vh;
+    background: darkcyan;
+}
+
+.clock-wrap {
+    display: flex;
+
+    border: solid 2px black;
+    padding: 1vmax;
+    font-size: 5vmax;
+}
+
+.day, .month, .year {
+    // border: solid 2px black;
+    padding: 1vmax;
+    margin: -1vmax;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.time {
+    padding: 1vmax;
+
+}
