@@ -15,17 +15,11 @@
     font-size: 5vmax;
 }
 
-.day, .month, .year {
+.date, .time {
     // border: solid 2px black;
     padding: 1vmax;
-    margin: -1vmax;
 
     display: flex;
     justify-content: center;
     align-items: center;
-}
-
-.time {
-    padding: 1vmax;
-
 }

@@ -1,12 +1,6 @@
-+function getDate () {
-    let start = Date.now();
-    let dayWrap = document.querySelector('.day');
-    let monthWrap = document.querySelector('.month');
-    let yearWrap = document.querySelector('.year');
-    let time = document.querySelector('.time')
-    /* let hoursWrap = document.querySelector('.hours');
-    let minutesWrap = document.querySelector('.minutes');
-    let secondsWrap = document.querySelector('.seconds'); */
+function getDate () {
+    let dateWrap = document.querySelector('.date');
+    let timeWrap = document.querySelector('.time')
     let now = new Date();
     
     let currentDay = now.getDate();
@@ -16,21 +10,17 @@
     let currentMinutes = now.getMinutes();
     let currentSeconds = now.getSeconds();
     
-    dayWrap.innerHTML = addZeroIfNeeded(currentDay) + '.';
-    monthWrap.innerHTML = addZeroIfNeeded(currentMonth + 1) + '.';
-    yearWrap.innerHTML = addZeroIfNeeded(currentYear);
-    time.innerHTML = addZeroIfNeeded(currentHours) + ':';
-    time.append(addZeroIfNeeded(currentMinutes) + ':');
-    time.append(addZeroIfNeeded(currentSeconds));
+    dateWrap.innerHTML = addZeroIfNeeded(currentDay) + '.';
+    dateWrap.append (addZeroIfNeeded(currentMonth + 1) + '.');
+    dateWrap.append (addZeroIfNeeded(currentYear));
+    timeWrap.innerHTML = addZeroIfNeeded(currentHours) + ':';
+    timeWrap.append(addZeroIfNeeded(currentMinutes) + ':');
+    timeWrap.append(addZeroIfNeeded(currentSeconds));
 
     function addZeroIfNeeded(num) {
         return num < 10 ? '0' + num : num;
     }
-    
-    let end = Date.now();
-    let elapsed = end - start;
-    return elapsed
-}
 
-setInterval(getDate, 1000 - getDate())
-// getDate()
+    setTimeout(getDate)
+}
+getDate()
