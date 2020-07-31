@@ -34,5 +34,28 @@ function setDate () {
 
     setTimeout(setDate)
 }
-
 setDate()
+
+class Reminder {
+    constructor(title, time) {
+        this.title = title;
+        this.time = time;
+    }
+
+    
+}
+
+function setReminder () {
+    let reminder = new Reminder('Feed the cat', Date.now() + 10000)
+    console.log(reminder.time)
+    return reminder
+}
+
+function playReminder (reminder) {
+    console.log(reminder.time)
+
+    let sound = new Audio('../audio/bell.mp3');
+    if (Date.now() === reminder.time) sound.play();
+    setTimeout(playReminder)
+}
+playReminder(setReminder())
