@@ -1,9 +1,11 @@
 .wrap {
     display: flex;
-    justify-content: center;
+    flex-direction: column;
+    justify-content: flex-start;
     align-items: center;
 
     height: 100vh;
+    padding: 2vmax;
     background: darkcyan;
 }
 
@@ -11,15 +13,24 @@
     display: flex;
 
     border: solid 2px black;
-    padding: 1vmax;
-    font-size: 5vmax;
+    padding: 0.5vmax;
+    font-size: 2.5vmax;
+    background-color: lightblue;
 }
 
 .date, .time {
-    // border: solid 2px black;
-    padding: 1vmax;
+    padding: 0.5vmax;
 
     display: flex;
     justify-content: center;
     align-items: center;
+}
+
+.reminder-form {
+    display: flex;
+    flex-direction: column;
+}
+
+.reminder-form > * {
+    margin-top: 2vmin;
 }
