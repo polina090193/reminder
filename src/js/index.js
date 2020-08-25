@@ -41,21 +41,42 @@ class Reminder {
         this.title = title;
         this.time = time;
     }
+}
 
+let sound = new Audio('../audio/bell.mp3');
+
+let submitButton = document.querySelector('.submit-button');
+
+submitButton.addEventListener('click', function () {
+    let inputTitle = document.querySelector('.reminder-title').value,
+        inputDate = document.querySelector('.reminder-date').value,
+        inputTime = document.querySelector('.reminder-time').value;
+
+    console.log(inputDate);
+    console.log(inputTime);
+
+    let transformDate = new Date(inputDate + 'T' + inputTime);
+
+    let reminder = new Reminder(inputTitle, transformDate.getTime())
     
-}
+    function runReminder(reminder) {
 
-function setReminder () {
-    let reminder = new Reminder('Feed the cat', Date.now() + 10000)
-    console.log(reminder.time)
-    return reminder
-}
+        let reminderTime = reminder.time;
+        let reminderTitle = reminder.title;
+        
+        function checkTime() {
+            if (Date.now() > reminderTime) {
+                sound.play()
+                console.log(reminderTitle)
+                return
+            }
+            setTimeout(checkTime, 1000)
+        }
+        checkTime()
+    }
 
-function playReminder (reminder) {
-    console.log(reminder.time)
+    runReminder(reminder)
+})
 
-    let sound = new Audio('../audio/bell.mp3');
-    if (Date.now() === reminder.time) sound.play();
-    setTimeout(playReminder)
-}
-playReminder(setReminder())
+
+

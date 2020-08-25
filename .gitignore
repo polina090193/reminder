@@ -350,3 +350,8 @@ MigrationBackup/
 
 # Ionide (cross platform F# VS Code tools) working folder
 .ionide/
+build/index.html
+build/css/style.css
+build/css/style.css
+build/index.html
+build/js/index.js
