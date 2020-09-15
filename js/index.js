@@ -34,6 +34,7 @@ function setDate () {
 
     setTimeout(setDate)
 }
+
 setDate()
 
 class Reminder {
