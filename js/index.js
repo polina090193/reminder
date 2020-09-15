@@ -34,7 +34,6 @@ function setDate () {
 
     setTimeout(setDate)
 }
-
 setDate()
 
 class Reminder {
@@ -68,7 +67,7 @@ submitButton.addEventListener('click', function () {
         function checkTime() {
             if (Date.now() > reminderTime) {
                 sound.play()
-                console.log(reminderTitle)
+                alert(reminderTitle)
                 return
             }
             setTimeout(checkTime, 1000)
