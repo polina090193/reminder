@@ -1,1 +1,131 @@
-.wrap{display:flex;flex-direction:column;justify-content:flex-start;align-items:flex-end;height:100vh;padding:2vmax;background:darkcyan}.clock-wrap{display:flex;border:solid 2px black;padding:0.5vmax;font-size:2.5vmax;background-color:lightblue}.date,.time{padding:0.5vmax;display:flex;justify-content:center;align-items:center}.reminder-form{display:flex;flex-direction:column}.reminder-form>*{margin-top:2vmin}html,body{width:100%}body{overflow-x:hidden}*,*::before,*::after{box-sizing:border-box}ul[class],ol[class]{padding:0}body,h1,h2,h3,h4,p,ul[class],ol[class],li,figure,figcaption,blockquote,dl,dd{margin:0}body{min-height:100vh;scroll-behavior:smooth;text-rendering:optimizeSpeed;line-height:1.5;letter-spacing:0.125em}ul[class],ol[class]{list-style:none}a{text-decoration:none;color:inherit}img{max-width:100%;display:block}input,textarea,select{font:inherit}@media (prefers-reduced-motion: reduce){*{-webkit-animation-duration:0.01ms !important;animation-duration:0.01ms !important;-webkit-animation-iteration-count:1 !important;animation-iteration-count:1 !important;transition-duration:0.01ms !important;scroll-behavior:auto !important}}button{padding:0;border:none;font:inherit;color:inherit;background-color:transparent;cursor:pointer}
+@charset "UTF-8";
+html, body {
+  width: 100%; }
+
+body {
+  overflow-x: hidden; }
+
+/* Указываем box sizing */
+*,
+*::before,
+*::after {
+  box-sizing: border-box; }
+
+/* Убираем внутренние отступы */
+ul[class] {
+  padding: 0; }
+
+/* Убираем внешние отступы */
+body,
+h1,
+h2,
+h3,
+h4,
+p,
+ul[class],
+ol[class],
+li,
+figure,
+figcaption,
+blockquote,
+dl,
+dd {
+  margin: 0; }
+
+/* Выставляем основные настройки по-умолчанию для body */
+body {
+  min-height: 100vh;
+  scroll-behavior: smooth;
+  text-rendering: optimizeSpeed;
+  line-height: 1.5;
+  letter-spacing: 0.125em; }
+
+/* Удаляем стандартную стилизацию для всех ul и ol, у которых есть атрибут class*/
+ul[class] {
+  list-style: none; }
+
+a {
+  text-decoration: none;
+  color: inherit; }
+
+/* Упрощаем работу с изображениями */
+img {
+  max-width: 100%;
+  display: block; }
+
+input,
+textarea,
+select {
+  font: inherit; }
+
+/* Удаляем все анимации и переходы для людей, которые предпочитают их не использовать */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    -webkit-animation-duration: 0.01ms !important;
+    animation-duration: 0.01ms !important;
+    -webkit-animation-iteration-count: 1 !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important; } }
+
+button {
+  padding: 0;
+  border: none;
+  font: inherit;
+  color: inherit;
+  background-color: transparent;
+  cursor: pointer; }
+
+body {
+  background-image: url("../images/background.jpg");
+  font-family: 'Arial', sans-serif;
+  font-size: 1.2rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #86a3a7; }
+
+.wrap {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: flex-start;
+  height: 100vh;
+  width: 40vmax;
+  min-width: 320px;
+  padding: 2vmax;
+  background-color: #1a1b20; }
+
+.clock-wrap {
+  display: flex;
+  border: solid 2px black;
+  padding: 0.5vmax;
+  font-size: 2.5vmax;
+  background-color: #86a3a7;
+  color: black; }
+
+.date, .time {
+  padding: 0.5vmax;
+  display: flex;
+  justify-content: center;
+  align-items: center; }
+
+.reminder-form {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between; }
+
+.reminder-form > * {
+  margin-top: 2vmin; }
+
+.submit-button {
+  border: solid 2px #86a3a7;
+  padding: 0.5rem; }
+
+.reminder-message {
+  color: violet; }
+
+/* .reminder-item:after,
+.reminder-message p:after {
+    content: ' X';
+} */
