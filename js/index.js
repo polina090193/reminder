@@ -1,13 +1,3 @@
-/* importScripts('./lib/ServiceWorkerWare.js');
-
-if ('serviceWorker' in navigator) {
-    navigator.serviceWorker.register('./sw.js')
-      .then(() => navigator.serviceWorker.ready.then((worker) => {
-        worker.sync.register('syncdata');
-      }))
-      .catch((err) => console.log(err));
-} */
-
 class Reminder {
     constructor(title, time) {
         this.title = title;
@@ -155,48 +145,3 @@ function checkAllRemindersIsEmpty() {
         return
     } 
 }
-/* self.addEventListener('install', (event) => {
-    console.log('Установлен');
-});
-
-self.addEventListener('activate', (event) => {
-    console.log('Активирован');
-});
-
-self.addEventListener('fetch', (event) => {
-    console.log('Происходит запрос на сервер');
-});
-
-let reminders = [];
-
-let root = (function() {
-    var tokens = (self.location + '').split('/');
-    tokens[tokens.length - 1] = '';
-    return tokens.join('/');
-  })();
-
-let worker = new ServiceWorkerWare();
-
-worker.get(root + 'api/reminders', function(req, res) {
-    return new Response(JSON.stringify(reminders.filter(function(item) {
-      return item !== null;
-    })));
-});
-
-worker.delete(root + 'api/reminders/:id', function(req, res) {
-    var id = parseInt(req.parameters.id, 10) - 1;
-    if (!reminders[id].isSticky) {
-        reminders[id] = null;
-    }
-    return new Response({ status: 204 });
-  });
-
-worker.post(root + 'api/reminders', function(req, res) {
-    return req.json().then(function(reminder) {
-    reminder.id = reminders.length + 1;
-    reminders.push(reminder);
-    return new Response(JSON.stringify(reminder), { status: 201 });
-});
-});
-   
-worker.init(); */
