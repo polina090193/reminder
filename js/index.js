@@ -96,8 +96,7 @@ function runReminder(allReminders) {
     for (let i = 0; i < allReminders.length; i++) {
         
         if (Date.now() >= allReminders[i][1]) {
-            let sound = new Audio('../audio/bell.mp3');
-            sound.crossOrigin = 'anonymous';
+            let sound = new Audio('audio/bell.mp3');
             sound.play();
 
             let reminderMessageField = document.querySelector('.reminder-message'),
