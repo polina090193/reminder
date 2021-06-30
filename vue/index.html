@@ -10,7 +10,7 @@
             display: none;
         }
         
-        body {
+        #app {
             margin-left: 800px;
         }
     </style>
@@ -19,12 +19,12 @@
 
         <div id="app">
             
-            <input v-model="newReminder.title" id="reminder-date" type="text">
-            <input v-model="newReminder.date" id="reminder-date" type="date">
-            <br><input v-model="newReminder.time" id="reminder-time" type="time">
+            <input v-model="newReminder" id="reminder-title" type="text"> <!-- v-model="newReminder.title" -->
+            <!-- <br><input v-model="newReminder.date" id="reminder-date" type="date">
+            <br><input v-model="newReminder.time" id="reminder-time" type="time"> -->
     
-            <p v-cloak>{{ reminderItem ? reminderItem : 'Введите дату и время' }}</p>
-            <button v-cloak v-show="reminderItem" v-on:click="addReminder">Set Reminder</button>
+            <p v-cloak>{{ newReminder }}</p> <!-- reminderItem ? reminderItem : 'Введите дату и время' -->
+            <button v-cloak v-show="newReminder" v-on:click="addReminder">Set Reminder</button> <!-- v-show="reminderItem" -->
 
         </div>
 

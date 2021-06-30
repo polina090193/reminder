@@ -27,11 +27,11 @@ let reminder = new Vue({
 
     reminders: remindersStorage.fetch(),
 
-    newReminder: {
+    newReminder: ''/* {
       title: '',
       date: '',
       time: '',
-    } 
+    }  */
 
   },
 
@@ -68,7 +68,19 @@ let reminder = new Vue({
   methods: {
 
     addReminder() {
-      alert('added!');
+      let value = this.newReminder /* && this.newReminder.trim() */;
+      if (!value) {
+        return;
+      }
+
+      this.reminders.push({
+        id: remindersStorage.uid++,
+        title: value
+      })
+
+      console.log(this.reminders);
+
+      this.newReminder = '';
     },
 
     removeReminder(reminder) {
