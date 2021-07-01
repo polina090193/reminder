@@ -35,6 +35,15 @@ let reminder = new Vue({
 
   },
 
+  watch: {
+    reminders: {
+      handler: function(reminders) {
+        remindersStorage.save(reminders);
+      },
+      deep: true
+    }
+  },
+
   computed: {
     
     reminderItem() {
@@ -88,7 +97,9 @@ let reminder = new Vue({
     },
 
     removeReminder(reminder) {
-
+      console.log(reminder.id);
+      this.reminders.splice(this.reminders.indexOf(reminder), 1)
+      console.log(this.reminders);
     },
     
     editReminder(reminder) {

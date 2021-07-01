@@ -13,6 +13,11 @@
         #app {
             margin-left: 800px;
         }
+
+        .close {
+            font-size: large;
+            cursor: pointer;
+        }
     </style>
 </head>
     <body>
@@ -25,6 +30,17 @@
     
             <p v-cloak>{{ reminderItem ? reminderItem : 'Введите дату и время' }}</p>
             <button v-cloak v-show="reminderItem" v-on:click="addReminder">Set Reminder</button>
+
+            <div class="reminders-list-wrap">
+                <p class="reminders-list-title"><strong>Поставлены напоминания:</strong></p>
+                <p class="no-reminders" v-show="this.reminders.length == 0">Нет поставленных напоминаний</p>
+                <ol class="reminders-list">
+                    <li v-for="item in reminders">
+                        {{ item.date }} {{ item.time }} - {{ item.title }} {{ item.id }}
+                        <div class="close" v-on:click="removeReminder(item)">Х</div>
+                    </li>
+                </ol>
+            </div>
 
         </div>
 
