@@ -28,15 +28,17 @@
             <br><input v-model="newReminder.date" id="reminder-date" type="date">
             <br><input v-model="newReminder.time" id="reminder-time" type="time">
     
-            <p v-cloak>{{ reminderItem ? reminderItem : 'Введите дату и время' }}</p>
+            <p v-cloak>{{ newReminder.title != '' && newReminder.date != '' && newReminder.time != '' ?
+                 newReminder.date + ' ' + newReminder.time + ' - ' + newReminder.title :
+                  'Введите дату и время' }}</p>
             <button v-cloak v-show="reminderItem" v-on:click="addReminder">Set Reminder</button>
 
             <div class="reminders-list-wrap">
                 <p class="reminders-list-title"><strong>Поставлены напоминания:</strong></p>
                 <p class="no-reminders" v-show="this.reminders.length == 0">Нет поставленных напоминаний</p>
                 <ol class="reminders-list">
-                    <li v-for="item in reminders">
-                        {{ item.date }} {{ item.time }} - {{ item.title }} {{ item.id }}
+                    <li v-cloak v-for="item in reminders">
+                        {{ item.date }} {{ item.time }} - {{ item.title }}
                         <div class="close" v-on:click="removeReminder(item)">Х</div>
                     </li>
                 </ol>

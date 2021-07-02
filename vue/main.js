@@ -31,6 +31,7 @@ let reminder = new Vue({
       title: '',
       date: '',
       time: '',
+      timeMs: '',
     } 
 
   },
@@ -87,19 +88,19 @@ let reminder = new Vue({
         title: value.title,
         date: value.date,
         time: value.time,
+        timeMs: Date.parse(value.date + ' ' + value.time),
       })
 
       this.newReminder = {
         title: '',
         date: '',
         time: '',
-      } ;
+        timeMs: '',
+      };
     },
 
     removeReminder(reminder) {
-      console.log(reminder.id);
       this.reminders.splice(this.reminders.indexOf(reminder), 1)
-      console.log(this.reminders);
     },
     
     editReminder(reminder) {
@@ -108,25 +109,14 @@ let reminder = new Vue({
 
     doneEdit: function(reminder) {
 
-      if (!this.editedReminder) {
-        return;
-      }
-
-      this.editedReminder = null;
-      reminder.title = reminder.title.trim();
-
-      if (!reminder.title) {
-        this.removeTodo(reminder);
-      }
-
     },
 
     cancelEdit: function(reminder) {
-      this.editedReminder = null;
-      reminder.title = this.beforeEditCache;
+
     },
     
     callReminder(reminder) {
+      
       this.removeReminder(reminder);
     }
 
