@@ -123,3 +123,11 @@ let reminder = new Vue({
   }
 
 })
+
+function checkTime() {
+  
+
+  setTimeout(checkTime, 8000)
+}
+
+checkTime();
