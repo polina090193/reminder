@@ -131,3 +131,7 @@ function checkTime() {
 }
 
 checkTime();
+
+window.addEventListener('storage', event => {
+  reminder.reminders = remindersStorage.fetch();
+})
