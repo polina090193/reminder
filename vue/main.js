@@ -118,15 +118,25 @@ let reminder = new Vue({
     callReminder(reminder) {
       
       this.removeReminder(reminder);
-    }
+    },
+
+    snoozeReminder(reminder) {
+
+    },
 
   }
 
 })
 
 function checkTime() {
-  
 
+  for(let item of reminder.reminders) {
+    if (Date.now() >= item.timeMs) {
+      document.querySelector('.reminders-list-wrap').append(item.title);
+      reminder.removeReminder(item);
+    }
+  }
+  
   setTimeout(checkTime, 8000)
 }
 
