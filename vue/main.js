@@ -78,7 +78,7 @@ let reminder = new Vue({
   methods: {
 
     addReminder() {
-      let value = this.newReminder /* && this.newReminder.trim() */;
+      let value = this.newReminder;
       if (!value) {
         return;
       }
@@ -114,11 +114,6 @@ let reminder = new Vue({
     cancelEdit: function(reminder) {
 
     },
-    
-    callReminder(reminder) {
-      
-      this.removeReminder(reminder);
-    },
 
     snoozeReminder(reminder) {
 
@@ -132,7 +127,12 @@ function checkTime() {
 
   for(let item of reminder.reminders) {
     if (Date.now() >= item.timeMs) {
+
+      let sound = new Audio('../audio/bell.mp3');
+          sound.play();
+
       document.querySelector('.reminders-list-wrap').append(item.title);
+
       reminder.removeReminder(item);
     }
   }
