@@ -116,7 +116,10 @@ let reminder = new Vue({
     },
 
     snoozeReminder(reminder) {
-
+      console.log('snoozed');
+      let newTime = Date.now() + 20000;
+      reminder.timeMs = newTime;
+      document.querySelector('snooze-' + reminder.id).remove();
     },
 
   }
@@ -124,16 +127,25 @@ let reminder = new Vue({
 })
 
 function checkTime() {
+  const snoozeButton = document.querySelector('#snooze-button');
 
   for(let item of reminder.reminders) {
-    if (Date.now() >= item.timeMs) {
+    if (Date.now() >= item.timeMs && !item.called) {
 
       let sound = new Audio('../audio/bell.mp3');
           sound.play();
 
-      document.querySelector('.reminders-list-wrap').append(item.title);
+      let snooze = document.createElement('button')
+          snooze.id = 'snooze-' + item.id,
+          snooze.innerHTML = 'Отложить на 20 сек',
+          snooze.addEventListener('click', () => reminder.snoozeReminder(item))
 
-      reminder.removeReminder(item);
+      document.querySelector('.reminders-list-wrap').append(item.title + ' ');
+      document.querySelector('.reminders-list-wrap').append(snooze);
+      item.called = true;
+
+
+      // reminder.removeReminder(item);
     }
   }
   
