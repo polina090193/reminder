@@ -2,28 +2,57 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="x-ua-compatible" content="ie=edge">
-    <link rel="stylesheet" href="./css/style.css">
     <title>Document</title>
+    <style>
+        [v-cloak] {
+            display: none;
+        }
+        
+        #app {
+            margin-left: 800px;
+        }
+
+        .close {
+            font-size: large;
+            cursor: pointer;
+        }
+    </style>
 </head>
-<body>
-    <div class="wrap">
-        <div class="clock-wrap"></div>
-        <div class="reminder-message"></div>
-        <div class="reminders-list-wrap">
-            <p class="reminders-list-title"><strong>Поставлены напоминания:</strong></p>
-            <p class="no-reminders">Нет поставленных напоминаний</p>
-            <ol class="reminders-list">
-            </ol>
+    <body>
+
+        <div id="app">
+            
+            <input v-model="newReminder.title" id="reminder-title" type="text">
+            <br><input v-model="newReminder.date" id="reminder-date" type="date">
+            <br><input v-model="newReminder.time" id="reminder-time" type="time">
+    
+            <p v-cloak>{{ newReminder.title != '' && newReminder.date != '' && newReminder.time != '' ?
+                 newReminder.date + ' ' + newReminder.time + ' - ' + newReminder.title :
+                  'Введите дату и время' }}</p>
+            <button v-cloak v-show="reminderItem" v-on:click="addReminder">Set Reminder</button>
+
+            <div class="reminders-list-wrap">
+                <p class="reminders-list-title"><strong>Поставлены напоминания:</strong></p>
+                <p class="no-reminders" v-show="this.reminders.length == 0">Нет поставленных напоминаний</p>
+                <ol class="reminders-list">
+                    <li v-cloak v-for="item in reminders">
+                        {{ item.date }} {{ item.time }} - {{ item.title }}
+                        <div class="close" v-on:click="removeReminder(item)">Х</div>
+                    </li>
+                </ol>
+            </div>
+
+            <!-- <template id="snooze-button">
+                <button>
+                    Отложить на 10 сек
+                </button>
+            </template>
+ -->
         </div>
-        <form class="reminder-form" name="reminder-form" id="reminder-form">
-            <label>Название напоминания:<br><input class="reminder-title" type="text"></label>
-            <label>Дата:<br><input class="reminder-date" type="date"></label>
-            <label>Время:<br><input class="reminder-time" type="time"></label>
-        </form>
-        <button form="reminder-form" type="reset" class="submit-button">Поставить напоминание</button>
-    </div>
-    <script src="js/index.js"></script>
-</body>
+
+        <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+        <script src="main.js"></script>
+    </body>
 </html>
