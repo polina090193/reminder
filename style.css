@@ -1,19 +1,25 @@
 @charset "UTF-8";
-html, body {
-  width: 100%; }
+
+html,
+body {
+  width: 100%;
+}
 
 body {
-  overflow-x: hidden; }
+  overflow-x: hidden;
+}
 
 /* Указываем box sizing */
 *,
 *::before,
 *::after {
-  box-sizing: border-box; }
+  box-sizing: border-box;
+}
 
 /* Убираем внутренние отступы */
 ul[class] {
-  padding: 0; }
+  padding: 0;
+}
 
 /* Убираем внешние отступы */
 body,
@@ -30,7 +36,8 @@ figcaption,
 blockquote,
 dl,
 dd {
-  margin: 0; }
+  margin: 0;
+}
 
 /* Выставляем основные настройки по-умолчанию для body */
 body {
@@ -38,25 +45,30 @@ body {
   scroll-behavior: smooth;
   text-rendering: optimizeSpeed;
   line-height: 1.5;
-  letter-spacing: 0.125em; }
+  letter-spacing: 0.125em;
+}
 
 /* Удаляем стандартную стилизацию для всех ul и ol, у которых есть атрибут class*/
 ul[class] {
-  list-style: none; }
+  list-style: none;
+}
 
 a {
   text-decoration: none;
-  color: inherit; }
+  color: inherit;
+}
 
 /* Упрощаем работу с изображениями */
 img {
   max-width: 100%;
-  display: block; }
+  display: block;
+}
 
 input,
 textarea,
 select {
-  font: inherit; }
+  font: inherit;
+}
 
 /* Удаляем все анимации и переходы для людей, которые предпочитают их не использовать */
 @media (prefers-reduced-motion: reduce) {
@@ -66,7 +78,9 @@ select {
     -webkit-animation-iteration-count: 1 !important;
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
-    scroll-behavior: auto !important; } }
+    scroll-behavior: auto !important;
+  }
+}
 
 button {
   padding: 0;
@@ -74,58 +88,70 @@ button {
   font: inherit;
   color: inherit;
   background-color: transparent;
-  cursor: pointer; }
+  cursor: pointer;
+}
 
 body {
-  background-image: url("../images/background.jpg");
+  background-image: url("background.jpg");
   font-family: 'Arial', sans-serif;
   font-size: 1.2rem;
   display: flex;
   justify-content: center;
   align-items: center;
-  color: #86a3a7; }
+  color: #86a3a7;
+}
 
-.wrap {
+
+
+#app {
   display: flex;
   flex-direction: column;
-  justify-content: space-around;
+  justify-content: center;
   align-content: center;
   height: 100vh;
-  width: 40vmax;
   min-width: 320px;
   padding: 2vmax;
-  background-color: #1a1b20; }
+  background-color: #1a1b20;
+}
 
-.clock-wrap {
-  border: solid 2px black;
-  text-align: center;
-  padding: 0.5vmax;
-  font-size: 2rem;
-  background-color: #86a3a7;
-  color: black; }
+.close {
+  font-size: large;
+  cursor: pointer;
+  margin-right: 1rem;
+}
 
-.date, .time {
-  padding: 0.5vmax;
-  display: flex;
-  justify-content: center;
-  align-items: center; }
+.set-btn[disabled] {
+  color: gray;
+}
 
 .reminder-form {
   display: flex;
   flex-direction: column;
-  justify-content: space-between; }
+  justify-content: space-between;
+}
 
-.reminder-form > * {
-  margin-top: 2vmin; }
+.reminder-form>* {
+  margin-top: 2vmin;
+}
 
 .submit-button {
   border: solid 2px #86a3a7;
-  padding: 0.5rem; }
+  padding: 0.5rem;
+}
 
 .reminder-message {
-  color: violet; }
+  color: violet;
+}
 
-/* .reminder-item:after,
-.reminder-message p:after {
-    content: ' X';
-} */
+.reminders-list li {
+  display: flex;
+  align-items: center;
+}
+
+.warning {
+  border: 3px red solid;
+}
+
+[v-cloak] {
+  display: none !important;
+}

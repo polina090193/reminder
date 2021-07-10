@@ -1,3 +1,5 @@
+// function 
+
 const STORAGE_KEY = "reminders";
 
 let remindersStorage = {
@@ -18,6 +20,10 @@ let remindersStorage = {
   }
 
 };
+
+window.addEventListener('storage', event => {
+  reminder.reminders = remindersStorage.fetch();
+})
 
 let reminder = new Vue({
 
@@ -46,40 +52,51 @@ let reminder = new Vue({
   },
 
   computed: {
-    
-    reminderItem() {
-      if (this.newReminder.date && this.newReminder.time) {
-
-        let dateObj = new Date(this.newReminder.date + 'T' + this.newReminder.time);
-  
-        let dd = dateObj.getDate();
-  
-        if (dd < 10) dd = '0' + dd;
-  
-        let mm = dateObj.getMonth() + 1;
-        if (mm < 10) mm = '0' + mm;
-  
-        let yy = dateObj.getFullYear() % 100;
-        if (yy < 10) yy = '0' + yy;
-  
-        let hh = dateObj.getHours();
-        if (hh < 10) hh = '0' + hh;
-  
-        let min = dateObj.getMinutes();
-        if (min < 10) min = '0' + min;
-  
-        return this.newReminder.title + ' ' + dd + '.' + mm + '.' + yy + ' ' + hh + ':' + min;
-
-      }
+    inputClass() {
+      if (!this.setIsActive) return 'warning';
     },
 
+    calledReminders() {
+      return this.reminders.filter(reminder => reminder.called)
+    },
+
+    setIsActive() {
+      return this.newReminder.title && this.newReminder.date && this.newReminder.time;
+    }
   },
 
   methods: {
 
+    getReminderText(item) {
+      
+      if (!item.timeMs) {
+        return item.timeMs || item;
+      }
+
+      let dateObj = new Date(item.timeMs);
+        
+        let dd = dateObj.getDate();
+        if (dd < 10) dd = '0' + dd;
+      
+        let mm = dateObj.getMonth() + 1;
+        if (mm < 10) mm = '0' + mm;
+      
+        let yy = dateObj.getFullYear() % 100;
+        if (yy < 10) yy = '0' + yy;
+      
+        let hh = dateObj.getHours();
+        if (hh < 10) hh = '0' + hh;
+      
+        let min = dateObj.getMinutes();
+        if (min < 10) min = '0' + min;
+        
+        return dd + '.' + mm + '.' + yy + ' ' + hh + ':' + min + ' - ' + item.title;
+      
+    },
+
     addReminder() {
       let value = this.newReminder;
-      if (!value) {
+      if (!value || !this.setIsActive) {
         return;
       }
 
@@ -89,37 +106,37 @@ let reminder = new Vue({
         date: value.date,
         time: value.time,
         timeMs: Date.parse(value.date + ' ' + value.time),
+        called: false,
       })
 
       this.newReminder = {
         title: '',
         date: '',
         time: '',
-        timeMs: '',
       };
     },
 
-    removeReminder(reminder) {
-      this.reminders.splice(this.reminders.indexOf(reminder), 1)
+    removeReminder(item) {
+      this.reminders.splice(this.reminders.indexOf(item), 1)
     },
     
-    editReminder(reminder) {
+    editReminder(item) {
 
     },
 
-    doneEdit: function(reminder) {
+    doneEdit(item) {
 
     },
 
-    cancelEdit: function(reminder) {
+    cancelEdit(item) {
 
     },
 
-    snoozeReminder(reminder) {
-      console.log('snoozed');
-      let newTime = Date.now() + 20000;
-      reminder.timeMs = newTime;
-      document.querySelector('snooze-' + reminder.id).remove();
+    snoozeReminder(item) {
+      let newMs = Date.now() + 240000;
+
+      item.timeMs = newMs;
+      item.called = false;
     },
 
   }
@@ -127,33 +144,18 @@ let reminder = new Vue({
 })
 
 function checkTime() {
-  const snoozeButton = document.querySelector('#snooze-button');
 
   for(let item of reminder.reminders) {
     if (Date.now() >= item.timeMs && !item.called) {
 
-      let sound = new Audio('../audio/bell.mp3');
+      let sound = new Audio('bell.mp3');
           sound.play();
 
-      let snooze = document.createElement('button')
-          snooze.id = 'snooze-' + item.id,
-          snooze.innerHTML = 'Отложить на 20 сек',
-          snooze.addEventListener('click', () => reminder.snoozeReminder(item))
-
-      document.querySelector('.reminders-list-wrap').append(item.title + ' ');
-      document.querySelector('.reminders-list-wrap').append(snooze);
       item.called = true;
-
-
-      // reminder.removeReminder(item);
     }
   }
   
-  setTimeout(checkTime, 8000)
+  setTimeout(checkTime, 1000)
 }
 
 checkTime();
-
-window.addEventListener('storage', event => {
-  reminder.reminders = remindersStorage.fetch();
-})
